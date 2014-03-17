@@ -10,6 +10,7 @@
     <property name="script-extension" value="bat" />
     <property name="dist" location="./dist" />
     <property name="version" value="1.0-dev" />
+    <property name="zip-name" value="projectred_peripheral" />
     
     <target name="copy-src">
         <copy todir="${minecraft-src}" verbose="true">
@@ -41,7 +42,7 @@
         <mkdir dir="${dist}"/>
         <copy file="${resources}/mcmod.info" tofile="${dist}/mcmod.info" />
         <replace file="${dist}/mcmod.info" token="@version@" value="${version}" />
-        <zip destfile="${dist}/projectred_peripheral-${version}.zip" >
+        <zip destfile="${dist}/${zip-name}-${version}.zip" >
             <zipfileset dir="${mcp}/reobf/minecraft" includes="br/com/gamemods/computercraft/integration/projectred/**"></zipfileset>
             <zipfileset file="${dist}/mcmod.info"></zipfileset>
             <zipfileset dir="${resources}" excludes="mcmod.info"></zipfileset>
