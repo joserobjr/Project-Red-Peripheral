@@ -1,0 +1,61 @@
+<project name="ProjectRedPeripheral" default="dist">
+    <property name="mcp" location="../../.." />
+    <property name="minecraft-src" location="${mcp}/src/minecraft/" />
+    <property name="computercraft-api" location="./computercraft-api" />
+    <property name="src" location="./src" />
+    <property name="resources" location="./resources" />
+    <property name="script-executor" value="cmd.exe" />
+    <property name="script-executor-args" value="/c" />
+    <property name="script-extension" value="bat" />
+    <property name="dist" location="./dist" />
+    <property name="version" value="1.0-dev" />
+    
+    <target name="copy-src">
+        <copy todir="${minecraft-src}" verbose="true">
+            <fileset dir="${computercraft-api}" />
+            <fileset dir="${src}" />
+        </copy>
+    </target>
+    
+    <target name="recompile" depends="copy-src">
+        <echo message="Executing ${script-executor} ${script-executor-args} ${mcp}/recompile.${script-extension}" />
+        <exec executable="${script-executor}" dir="${mcp}" >
+            <arg line="${script-executor-args} ${mcp}/recompile.${script-extension}" />
+        </exec>
+    </target>
+
+    <target name="reobfuscate" depends="recompile">
+        <echo message="Executing ${script-executor} ${script-executor-args} ${mcp}/reobfuscate.${script-extension}" />
+        <exec executable="${script-executor}" dir="${mcp}">
+            <arg line="${script-executor-args} ${mcp}/reobfuscate.${script-extension}" />
+        </exec>
+    </target>
+    
+    <target name="clean-dist">
+        <delete dir="${dist}" failonerror="false"></delete>
+    </target>
+    
+    <target name="zip" depends="reobfuscate,clean-dist">
+        <mkdir dir="${dist}"/>
+        <copy file="${resources}/mcmod.info" tofile="${dist}/mcmod.info" />
+        <replace file="${dist}/mcmod.info" token="@version@" value="${version}" />
+        <zip destfile="${dist}/projectred_peripheral-${version}.zip" >
+            <zipfileset dir="${mcp}/reobf/minecraft" includes="br/com/gamemods/computercraft/integration/projectred/**"></zipfileset>
+            <zipfileset file="${dist}/mcmod.info"></zipfileset>
+            <zipfileset dir="${resources}" excludes="mcmod.info"></zipfileset>
+        </zip>
+    </target>
+    
+    <target name="dist" depends="zip,delete-copy" />
+    
+    <target name="delete-copy">
+        <delete verbose="true">
+            <fileset dir="${minecraft-src}">
+                <present present="both" targetdir="${src}" />
+            </fileset>
+            <fileset dir="${minecraft-src}">
+                <present present="both" targetdir="${computercraft-api}" />
+            </fileset>
+        </delete>
+    </target>
+</project>

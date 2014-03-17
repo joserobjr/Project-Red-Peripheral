@@ -1,0 +1,17 @@
+[
+{
+  "modid" : "ProjectRedPeripheral",
+  "name" : "Project: Red - Peripheral",
+  "version" : "@version@",
+  "url" : "http://www.computercraft.info/forums2/index.php?/topic/17531-mc164-project-red-peripheral/",
+  "credits" : "Created by joserobjr",
+  "authors" : [
+    "joserobjr"
+  ],
+  "description" : "Allows connections between ComputerCraft and Project: Red Bundled Cable",
+  "logoFile" : "",
+  "updateUrl" : "",
+  "parent" : "",
+  "screenshots": [
+  ]
+}
