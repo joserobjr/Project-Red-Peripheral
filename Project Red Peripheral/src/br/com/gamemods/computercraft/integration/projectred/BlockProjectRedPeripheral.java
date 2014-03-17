@@ -45,6 +45,12 @@ public class BlockProjectRedPeripheral extends Block implements ITileEntityProvi
 	}
 	
 	@Override
+	public boolean isBlockSolidOnSide(World world, int x, int y, int z,
+			ForgeDirection side) {
+		return true;
+	}
+	
+	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
