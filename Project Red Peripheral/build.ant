@@ -2,6 +2,7 @@
     <property name="mcp" location="../../.." />
     <property name="minecraft-src" location="${mcp}/src/minecraft/" />
     <property name="computercraft-api" location="./computercraft-api" />
+    <property name="projectred-api" location="./projectred-api" />
     <property name="src" location="./src" />
     <property name="resources" location="./resources" />
     <property name="script-executor" value="cmd.exe" />
@@ -13,6 +14,7 @@
     <target name="copy-src">
         <copy todir="${minecraft-src}" verbose="true">
             <fileset dir="${computercraft-api}" />
+            <fileset dir="${projectred-api}" />
             <fileset dir="${src}" />
         </copy>
     </target>
@@ -56,6 +58,9 @@
             </fileset>
             <fileset dir="${minecraft-src}">
                 <present present="both" targetdir="${computercraft-api}" />
+            </fileset>
+            <fileset dir="${minecraft-src}">
+                <present present="both" targetdir="${projectred-api}" />
             </fileset>
         </delete>
     </target>
