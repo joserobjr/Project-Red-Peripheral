@@ -27,7 +27,7 @@
     <target name="reobfuscate" depends="recompile">
         <echo message="Executing ${script-executor} ${script-executor-args} ${mcp}/reobfuscate.${script-extension}" />
         <exec executable="${script-executor}" dir="${mcp}">
-            <arg line="${script-executor-args} ${mcp}/reobfuscate.${script-extension}" />
+            <arg line="${script-executor-args} ${mcp}/reobfuscate_srg.${script-extension}" />
         </exec>
     </target>
     
@@ -44,6 +44,7 @@
             <zipfileset file="${dist}/mcmod.info"></zipfileset>
             <zipfileset dir="${resources}" excludes="mcmod.info"></zipfileset>
         </zip>
+        <delete file="${dist}/mcmod.info"></delete>
     </target>
     
     <target name="dist" depends="zip,delete-copy" />
