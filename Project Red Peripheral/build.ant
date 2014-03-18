@@ -36,7 +36,7 @@
     </target>
 
     <target name="reobfuscate" depends="recompile">
-        <echo message="Executing ${script-executor} ${script-executor-args} ${mcp}/reobfuscate.${script-extension}" />
+        <echo message="Executing ${script-executor} ${script-executor-args} ${mcp}/reobfuscate_srg.${script-extension}" />
         <exec executable="${script-executor}" dir="${mcp}">
             <arg line="${script-executor-args} ${mcp}/reobfuscate_srg.${script-extension}" />
         </exec>
