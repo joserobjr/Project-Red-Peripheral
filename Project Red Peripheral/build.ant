@@ -3,6 +3,7 @@
     <property name="minecraft-src" location="${mcp}/src/minecraft/" />
     <property name="computercraft-api" location="./computercraft-api" />
     <property name="projectred-api" location="./projectred-api" />
+    <property name="mods" location="./mods" />
     <property name="src" location="./src" />
     <property name="resources" location="./resources" />
     <property name="script-executor" value="cmd.exe" />
@@ -16,7 +17,13 @@
         <copy todir="${minecraft-src}" verbose="true">
             <fileset dir="${computercraft-api}" />
             <fileset dir="${projectred-api}" />
-            <fileset dir="${src}" />
+            <fileset dir="${src}" excludes="codechicken/**" />
+        </copy>
+        <!--<copy todir="${mcp}/jars/mods" verbose="true">
+            <fileset dir="${mods}" includes="*.jar" />
+        </copy>-->
+        <copy todir="${mcp}/lib" verbose="true">
+            <fileset dir="${mods}" includes="*.jar" />
         </copy>
     </target>
     
@@ -62,6 +69,12 @@
             </fileset>
             <fileset dir="${minecraft-src}">
                 <present present="both" targetdir="${projectred-api}" />
+            </fileset>
+            <!--<fileset dir="${mcp}/jars/mods">
+                <present present="both" targetdir="${mods}" />
+            </fileset>-->
+            <fileset dir="${mcp}/lib">
+                <present present="both" targetdir="${mods}" />
             </fileset>
         </delete>
     </target>
