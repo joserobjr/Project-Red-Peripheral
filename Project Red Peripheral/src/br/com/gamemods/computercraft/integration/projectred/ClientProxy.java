@@ -1,8 +1,9 @@
-package br.com.gamemods.computercraft.integration.projectred.client;
+package br.com.gamemods.computercraft.integration.projectred;
 
-import br.com.gamemods.computercraft.integration.projectred.CommonProxy;
 import br.com.gamemods.computercraft.integration.projectred.block.BlockProjectRedPeripheral;
 import br.com.gamemods.computercraft.integration.projectred.block.TileEntityProjectRedPeripheral;
+import br.com.gamemods.computercraft.integration.projectred.client.ItemProjectRedPeripheralRenderer;
+import br.com.gamemods.computercraft.integration.projectred.client.TileEntityProjectRedPeripheralSpecialRender;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 
