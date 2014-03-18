@@ -80,6 +80,7 @@
         <mkdir dir="${dist}"/>
         <copy file="${resources}/mcmod.info" tofile="${dist}/mcmod.info" />
         <replace file="${dist}/mcmod.info" token="@version@" value="${version}" />
+        <replace file="${dist}/mcmod.info" token="@clean-version@" value="${clean-version}" />
         <zip destfile="${dist}/${zip-name}-${version}.jar" >
             <zipfileset dir="${mcp}/reobf/minecraft" includes="br/com/gamemods/computercraft/integration/projectred/**"></zipfileset>
             <zipfileset dir="${mcp}/reobf/minecraft" includes="mrtjp/projectred/api/**"></zipfileset>
