@@ -160,6 +160,9 @@ public class TileEntityProjectRedPeripheral extends TileEntity implements IPerip
 				if(args.length != 1 || args[0] == null || !(args[0] instanceof String))
 					throw new Exception("Expected string");
 				
+				if(ProjectRedAPI.transmissionAPI == null)
+					return new Object[]{ 0 };
+				
 				int side = parseSide((String)args[0]);
 				byte[] inputSignal = ProjectRedAPI.transmissionAPI.getBundledInput(worldObj, xCoord, yCoord, zCoord, side);
 				
