@@ -10,11 +10,27 @@
     <property name="script-executor-args" value="/c" />
     <property name="script-extension" value="bat" />
     <property name="dist" location="./dist" />
-    <property name="version" value="1.0-dev" />
+    <property name="version" value="mc1.6.4-2.0-dev" />
     <property name="zip-name" value="projectred_peripheral" />
     <property name="reob-cmd" value="reobfuscate_srg" />
+    <property name="ccc-file" value="CodeChickenCore-dev 0.9.0.9.jar" />
     
-    <target name="copy-src">
+    <target name="set-numeric-version" depends="clean-dist">
+        <echo message="${version}" file="${dist}/version.txt" />
+        <loadfile property="clean-version" srcfile="${dist}/version.txt">
+            <filterchain>
+                <headfilter lines="1" skip="0"/>
+                <tokenfilter>
+                  <replaceregex pattern="^mc[^-]+-" replace="" flags="gi"/>
+                </tokenfilter>
+                <striplinebreaks/>
+            </filterchain>
+        </loadfile>
+        
+        <echo message="Versão: ${version} / ${clean-version}"></echo>
+    </target>
+    
+    <target name="copy-src" depends="set-numeric-version">
         <copy todir="${minecraft-src}" verbose="true">
             <fileset dir="${computercraft-api}" />
             <fileset dir="${projectred-api}" />
@@ -27,6 +43,18 @@
         <copy todir="${mcp}/lib" verbose="true">
             <fileset dir="${mods}" includes="*.jar" />
         </copy>
+        <unzip dest="${minecraft-src}" src="${mods}/${ccc-file}" >
+            <patternset>
+                <include name="src/codechicken/core/launch/**" />
+            </patternset>
+        </unzip>
+        <move todir="${minecraft-src}" verbose="true">
+            <fileset dir="${minecraft-src}/src"></fileset>
+        </move>
+        
+
+        <replace dir="${minecraft-src}/br/com/gamemods" token="@version@" value="${version}"  />
+        <replace dir="${minecraft-src}/br/com/gamemods" token="@clean-version@" value="${clean-version}"  />
     </target>
     
     <target name="recompile" depends="copy-src">
@@ -47,13 +75,14 @@
         <delete dir="${dist}" failonerror="false"></delete>
     </target>
     
-    <target name="zip" depends="reobfuscate,clean-dist">
+    <target name="zip" depends="reobfuscate">
         <mkdir dir="${dist}"/>
         <copy file="${resources}/mcmod.info" tofile="${dist}/mcmod.info" />
         <replace file="${dist}/mcmod.info" token="@version@" value="${version}" />
-        <zip destfile="${dist}/${zip-name}-${version}.zip" >
+        <zip destfile="${dist}/${zip-name}-${version}.jar" >
             <zipfileset dir="${mcp}/reobf/minecraft" includes="br/com/gamemods/computercraft/integration/projectred/**"></zipfileset>
             <zipfileset dir="${mcp}/reobf/minecraft" includes="mrtjp/projectred/api/**"></zipfileset>
+            <zipfileset dir="${mcp}/reobf/minecraft" includes="codechicken/core/launch/**"></zipfileset>
             <zipfileset dir="${dist}" includes="*.info"></zipfileset>
             <zipfileset dir="${resources}" excludes="mcmod.info"></zipfileset>
         </zip>
@@ -79,6 +108,7 @@
             <fileset dir="${mcp}/lib">
                 <present present="both" targetdir="${mods}" />
             </fileset>
+            <fileset dir="${minecraft-src}" includes="codechicken/core/launch/**"></fileset>
         </delete>
     </target>
 </project>
