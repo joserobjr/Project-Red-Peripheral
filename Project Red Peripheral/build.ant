@@ -52,6 +52,7 @@
         <replace file="${dist}/mcmod.info" token="@version@" value="${version}" />
         <zip destfile="${dist}/${zip-name}-${version}.zip" >
             <zipfileset dir="${mcp}/reobf/minecraft" includes="br/com/gamemods/computercraft/integration/projectred/**"></zipfileset>
+            <zipfileset dir="${mcp}/reobf/minecraft" includes="mrtjp/projectred/api/**"></zipfileset>
             <zipfileset file="${dist}/mcmod.info"></zipfileset>
             <zipfileset dir="${resources}" excludes="mcmod.info"></zipfileset>
         </zip>
