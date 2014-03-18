@@ -16,6 +16,7 @@
     <property name="ccc-file" value="CodeChickenCore-dev 0.9.0.9.jar" />
     
     <target name="set-numeric-version" depends="clean-dist">
+        <mkdir dir="${dist}"/>
         <echo message="${version}" file="${dist}/version.txt" />
         <loadfile property="clean-version" srcfile="${dist}/version.txt">
             <filterchain>
