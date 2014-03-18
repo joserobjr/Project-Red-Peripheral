@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityProjectRedPeripheral extends TileEntity implements IPeripheral, IBundledTile {
-	private static final Object[] sides = { "bottom", "top", "front", "back", "left", "right" };
+	private static final Object[] sides = { "bottom", "top", "front", "back", "right", "left" };
 	private byte[][] bundledSignal = new byte[6][16];
 	private byte[] redstoneSignal = new byte[6];
 	private int attachedComputers = 0;
