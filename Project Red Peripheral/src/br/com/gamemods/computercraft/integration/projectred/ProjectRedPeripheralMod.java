@@ -12,6 +12,7 @@ import br.com.gamemods.computercraft.integration.projectred.block.TileEntityProj
 import br.com.gamemods.computercraft.integration.projectred.item.ItemExtensorPart;
 import mrtjp.projectred.api.ProjectRedAPI;
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
@@ -25,7 +26,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="ProjectRedPeripheral", dependencies="required-after:ProjRed|Transmission")
+@Mod(modid="ProjectRedPeripheral", dependencies="after:*;required-after:ComputerCraft")
 public class ProjectRedPeripheralMod implements IPartFactory {
 	
 	@SidedProxy(clientSide="br.com.gamemods.computercraft.integration.projectred.ClientProxy",
@@ -51,7 +52,9 @@ public class ProjectRedPeripheralMod implements IPartFactory {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		BlockProjectRedPeripheral.blockId = config.getBlock("bundled_io", BlockProjectRedPeripheral.blockId).getInt();
-		ItemExtensorPart itemExtensor = new ItemExtensorPart(config.getItem("extensor", 889).getInt());
+		Item itemExtensor = new ItemExtensorPart(config.getItem("extensor", 889).getInt());
+		itemExtensor.setCreativeTab(CreativeTabs.tabRedstone);
+		itemExtensor.setUnlocalizedName("extensorPart");
 		GameRegistry.registerItem(itemExtensor, "extensor");
 		config.save();
 	}

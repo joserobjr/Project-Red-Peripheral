@@ -12,6 +12,7 @@
     <property name="dist" location="./dist" />
     <property name="version" value="1.0-dev" />
     <property name="zip-name" value="projectred_peripheral" />
+    <property name="reob-cmd" value="reobfuscate_srg" />
     
     <target name="copy-src">
         <copy todir="${minecraft-src}" verbose="true">
@@ -36,9 +37,9 @@
     </target>
 
     <target name="reobfuscate" depends="recompile">
-        <echo message="Executing ${script-executor} ${script-executor-args} ${mcp}/reobfuscate_srg.${script-extension}" />
+        <echo message="Executing ${script-executor} ${script-executor-args} ${mcp}/${reob-cmd}.${script-extension}" />
         <exec executable="${script-executor}" dir="${mcp}">
-            <arg line="${script-executor-args} ${mcp}/reobfuscate_srg.${script-extension}" />
+            <arg line="${script-executor-args} ${mcp}/${reob-cmd}.${script-extension}" />
         </exec>
     </target>
     
@@ -53,7 +54,7 @@
         <zip destfile="${dist}/${zip-name}-${version}.zip" >
             <zipfileset dir="${mcp}/reobf/minecraft" includes="br/com/gamemods/computercraft/integration/projectred/**"></zipfileset>
             <zipfileset dir="${mcp}/reobf/minecraft" includes="mrtjp/projectred/api/**"></zipfileset>
-            <zipfileset file="${dist}/mcmod.info"></zipfileset>
+            <zipfileset dir="${dist}" includes="*.info"></zipfileset>
             <zipfileset dir="${resources}" excludes="mcmod.info"></zipfileset>
         </zip>
         <delete file="${dist}/mcmod.info"></delete>
