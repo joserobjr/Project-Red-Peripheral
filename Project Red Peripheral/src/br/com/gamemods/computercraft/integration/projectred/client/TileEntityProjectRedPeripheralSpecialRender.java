@@ -1,6 +1,7 @@
-package br.com.gamemods.computercraft.integration.projectred;
+package br.com.gamemods.computercraft.integration.projectred.client;
 
 import org.lwjgl.opengl.GL11;
+
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;

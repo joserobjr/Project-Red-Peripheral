@@ -1,4 +1,4 @@
-package br.com.gamemods.computercraft.integration.projectred;
+package br.com.gamemods.computercraft.integration.projectred.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPistonBase;

@@ -1,5 +1,7 @@
 package br.com.gamemods.computercraft.integration.projectred;
 
+import br.com.gamemods.computercraft.integration.projectred.block.BlockProjectRedPeripheral;
+import br.com.gamemods.computercraft.integration.projectred.block.TileEntityProjectRedPeripheral;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
@@ -30,7 +32,6 @@ public class ProjectRedPeripheralMod {
 	
 	@EventHandler
 	public void onInit(FMLInitializationEvent event){
-		
 		GameRegistry.registerTileEntity(TileEntityProjectRedPeripheral.class, "tileEntityProjectRedPeripheral");
 		
 		BlockProjectRedPeripheral block = new BlockProjectRedPeripheral();

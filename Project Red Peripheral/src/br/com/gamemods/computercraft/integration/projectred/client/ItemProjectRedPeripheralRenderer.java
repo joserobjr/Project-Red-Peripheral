@@ -1,5 +1,6 @@
-package br.com.gamemods.computercraft.integration.projectred;
+package br.com.gamemods.computercraft.integration.projectred.client;
 
+import br.com.gamemods.computercraft.integration.projectred.block.TileEntityProjectRedPeripheral;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;

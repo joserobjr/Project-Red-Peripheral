@@ -1,4 +1,4 @@
-package br.com.gamemods.computercraft.integration.projectred;
+package br.com.gamemods.computercraft.integration.projectred.block;
 
 import dan200.computer.api.IComputerAccess;
 import dan200.computer.api.ILuaContext;
