@@ -8,7 +8,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Minecraft"/>
 	<classpathentry kind="lib" path="/Minecraft/jars/libraries/org/lwjgl/lwjgl/lwjgl/2.9.0/lwjgl-2.9.0.jar" sourcepath="/Minecraft/jars/libraries/org/lwjgl/lwjgl/lwjgl/2.9.0/lwjgl-2.9.0-sources.jar"/>
 	<classpathentry kind="lib" path="mods/ForgeMultipart-dev-1.6.4-1.0.0.250.jar"/>
-	<classpathentry kind="lib" path="mods/CodeChickenLib-dev-1.6.4-1.0.0.43.jar"/>
 	<classpathentry kind="lib" path="/Minecraft/jars/libraries/org/scala-lang/scala-library/2.10.2/scala-library-2.10.2.jar"/>
+	<classpathentry kind="lib" path="mods/CodeChickenLib-dev-1.6.4-1.0.0.62.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

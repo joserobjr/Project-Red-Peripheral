@@ -19,9 +19,10 @@
             <fileset dir="${projectred-api}" />
             <fileset dir="${src}" excludes="codechicken/**" />
         </copy>
-        <!--<copy todir="${mcp}/jars/mods" verbose="true">
+        <mkdir dir="${mcp}/jars/mods"/>
+        <copy todir="${mcp}/jars/mods" verbose="true">
             <fileset dir="${mods}" includes="*.jar" />
-        </copy>-->
+        </copy>
         <copy todir="${mcp}/lib" verbose="true">
             <fileset dir="${mods}" includes="*.jar" />
         </copy>
@@ -70,9 +71,9 @@
             <fileset dir="${minecraft-src}">
                 <present present="both" targetdir="${projectred-api}" />
             </fileset>
-            <!--<fileset dir="${mcp}/jars/mods">
+            <fileset dir="${mcp}/jars/mods">
                 <present present="both" targetdir="${mods}" />
-            </fileset>-->
+            </fileset>
             <fileset dir="${mcp}/lib">
                 <present present="both" targetdir="${mods}" />
             </fileset>
