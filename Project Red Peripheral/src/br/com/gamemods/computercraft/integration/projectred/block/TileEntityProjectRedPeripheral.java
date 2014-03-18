@@ -30,7 +30,7 @@ public class TileEntityProjectRedPeripheral extends TileEntity implements IPerip
 	
 	@Override
 	public String getType() {
-		return "projectredperipheral";
+		return "bundledio";
 	}
 
 	@Override
