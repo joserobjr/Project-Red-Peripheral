@@ -2,6 +2,7 @@ package br.com.gamemods.computercraft.integration.projectred.block;
 
 import java.util.Arrays;
 
+import br.com.gamemods.computercraft.integration.projectred.ProjectRedPeripheralMod;
 import br.com.gamemods.computercraft.integration.projectred.client.ExtensorRender;
 import br.com.gamemods.computercraft.integration.projectred.item.ItemExtensorPart;
 
@@ -19,6 +20,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Rotation;
 import codechicken.lib.vec.Vector3;
+import codechicken.multipart.IFaceRedstonePart;
 import codechicken.multipart.IRedstonePart;
 import codechicken.multipart.JNormalOcclusion;
 import codechicken.multipart.NormalOcclusionTest;
@@ -27,7 +29,7 @@ import codechicken.multipart.TMultiPart;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ExtensorPart extends TMultiPart implements TFacePart, IBundledEmitter, IConnectable, IRedstonePart{
+public class ExtensorPart extends TMultiPart implements TFacePart, IBundledEmitter, IConnectable, IFaceRedstonePart{
 
 	public byte side;
 	public byte[] bundledSignal = new byte[16];
@@ -84,11 +86,13 @@ public class ExtensorPart extends TMultiPart implements TFacePart, IBundledEmitt
 
 	@Override
 	public int getSlotMask() {
+		ProjectRedPeripheralMod.log.info("getSlotMask");
 		return 1<<side;
 	}
 
 	@Override
 	public int redstoneConductionMap() {
+		ProjectRedPeripheralMod.log.info("redstoneConductionMap");
 		return 0xF;
 	}
 
@@ -99,25 +103,27 @@ public class ExtensorPart extends TMultiPart implements TFacePart, IBundledEmitt
 
 	@Override
 	public byte[] getBundledSignal(int side) {
+		ProjectRedPeripheralMod.log.info("getBundledSignal "+side);
 		bundledSignal[1] = (byte)(255 & 0xFF);
 		return bundledSignal;
 	}
 
 	@Override
 	public boolean connectStraight(IConnectable part, int r, int edgeRot) {
+		ProjectRedPeripheralMod.log.info("connectStraight "+r+" "+part);
 		return true;
 	}
 
 	@Override
 	public boolean connectInternal(IConnectable part, int r) {
-		// TODO Auto-generated method stub
+		ProjectRedPeripheralMod.log.info("connectInternal "+r+" "+part);
 		return false;
 	}
 
 	@Override
 	public boolean connectCorner(IConnectable part, int r, int edgeRot) {
-		// TODO Auto-generated method stub
-		return false;
+		ProjectRedPeripheralMod.log.info("connectCorner "+r+" "+edgeRot+" "+part);
+		return true;
 	}
 	
 	@Override
@@ -128,6 +134,7 @@ public class ExtensorPart extends TMultiPart implements TFacePart, IBundledEmitt
 
 	@Override
 	public boolean canConnectCorner(int r) {
+		ProjectRedPeripheralMod.log.info("canConnectCorner "+r);
 		return false;
 	}
 	
@@ -171,18 +178,27 @@ public class ExtensorPart extends TMultiPart implements TFacePart, IBundledEmitt
 
 	@Override
 	public boolean canConnectRedstone(int arg0) {
+		ProjectRedPeripheralMod.log.info("canConnectRedstone "+arg0);
 		return true;
 	}
 
 	@Override
 	public int strongPowerLevel(int arg0) {
-		// TODO Auto-generated method stub
+		ProjectRedPeripheralMod.log.info("strongPowerLevel "+arg0);
 		return 0;
 	}
 
 	@Override
 	public int weakPowerLevel(int arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+		ProjectRedPeripheralMod.log.info("weakPowerLevel "+arg0);
+		return 15;
+	}
+
+	@Override
+	public int getFace()
+	{
+		int i = side;
+		ProjectRedPeripheralMod.log.info("GetFace: "+i);
+		return i;
 	}
 }
