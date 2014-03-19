@@ -1,8 +1,9 @@
 <project name="ProjectRedPeripheral" default="dist">
-    <property name="mcp" location="../../.." />
+    <property name="mcp" location="${mcp-1.6.4}" />
     <property name="minecraft-src" location="${mcp}/src/minecraft/" />
     <property name="computercraft-api" location="./computercraft-api" />
     <property name="projectred-api" location="./projectred-api" />
+	<property name="forge-multipart-src" location="../ForgeMultipart" />
     <property name="mods" location="./mods" />
     <property name="src" location="./src" />
     <property name="resources" location="./resources" />
@@ -35,6 +36,7 @@
         <copy todir="${minecraft-src}" verbose="true">
             <fileset dir="${computercraft-api}" />
             <fileset dir="${projectred-api}" />
+        	<fileset dir="${forge-multipart-src}" includes="codechicken/**" />
             <fileset dir="${src}" excludes="codechicken/**" />
         </copy>
         <mkdir dir="${mcp}/jars/mods"/>
@@ -44,14 +46,14 @@
         <copy todir="${mcp}/lib" verbose="true">
             <fileset dir="${mods}" includes="*.jar" />
         </copy>
-        <unzip dest="${minecraft-src}" src="${mods}/${ccc-file}" >
+        <!--<unzip dest="${minecraft-src}" src="${mods}/${ccc-file}" >
             <patternset>
                 <include name="src/codechicken/core/launch/**" />
             </patternset>
         </unzip>
         <move todir="${minecraft-src}" verbose="true">
             <fileset dir="${minecraft-src}/src"></fileset>
-        </move>
+        </move>-->
         
 
         <replace dir="${minecraft-src}/br/com/gamemods" token="@version@" value="${version}"  />
@@ -104,6 +106,9 @@
             <fileset dir="${minecraft-src}">
                 <present present="both" targetdir="${projectred-api}" />
             </fileset>
+        	<fileset dir="${minecraft-src}">
+        		<present present="both" targetdir="${forge-multipart-src}/codechicken/**" />
+            </fileset>
             <fileset dir="${mcp}/jars/mods">
                 <present present="both" targetdir="${mods}" />
             </fileset>
@@ -112,5 +117,11 @@
             </fileset>
             <fileset dir="${minecraft-src}" includes="codechicken/core/launch/**"></fileset>
         </delete>
+    	<delete includeemptydirs="true">
+    		<fileset dir="${minecraft-src}/br"></fileset>
+    		<fileset dir="${minecraft-src}/codechicken"></fileset>
+    		<fileset dir="${minecraft-src}/dan200"></fileset>
+    		<fileset dir="${minecraft-src}/mrtjp"></fileset>
+    	</delete>
     </target>
 </project>
