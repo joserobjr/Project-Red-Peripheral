@@ -62,14 +62,14 @@
     
     <target name="recompile" depends="copy-src">
         <echo message="Executing ${script-executor} ${script-executor-args} ${mcp}/recompile.${script-extension}" />
-        <exec executable="${script-executor}" dir="${mcp}" >
+        <exec executable="${script-executor}" dir="${mcp}" failonerror="true" >
             <arg line="${script-executor-args} ${mcp}/recompile.${script-extension}" />
         </exec>
     </target>
 
     <target name="reobfuscate" depends="recompile">
         <echo message="Executing ${script-executor} ${script-executor-args} ${mcp}/${reob-cmd}.${script-extension}" />
-        <exec executable="${script-executor}" dir="${mcp}">
+        <exec executable="${script-executor}" dir="${mcp}" failonerror="true">
             <arg line="${script-executor-args} ${mcp}/${reob-cmd}.${script-extension}" />
         </exec>
     </target>
