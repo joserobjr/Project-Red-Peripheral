@@ -29,6 +29,8 @@ public class ItemExtensorPart extends JItemMultiPart {
 	
 	public ItemExtensorPart(int id) {
 		super(id);
+		setCreativeTab(CreativeTabs.tabRedstone);
+		setUnlocalizedName("extensorPart");
 	}
 	
 	@Override

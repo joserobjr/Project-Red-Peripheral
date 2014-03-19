@@ -53,8 +53,6 @@ public class ProjectRedPeripheralMod implements IPartFactory {
 		config.load();
 		BlockProjectRedPeripheral.blockId = config.getBlock("bundled_io", BlockProjectRedPeripheral.blockId).getInt();
 		Item itemExtensor = new ItemExtensorPart(config.getItem("extensor", 889).getInt());
-		itemExtensor.setCreativeTab(CreativeTabs.tabRedstone);
-		itemExtensor.setUnlocalizedName("extensorPart");
 		GameRegistry.registerItem(itemExtensor, "extensor");
 		config.save();
 	}
