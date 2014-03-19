@@ -26,7 +26,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="ProjectRedPeripheral", dependencies="after:*;required-after:ComputerCraft",version="@clean-version@")
+@Mod(modid="ProjectRedPeripheral", name="Project: Red - Peripheral", dependencies="after:*;required-after:ComputerCraft",version="@clean-version@")
 public class ProjectRedPeripheralMod implements IPartFactory {
 	
 	@SidedProxy(clientSide="br.com.gamemods.computercraft.integration.projectred.ClientProxy",
