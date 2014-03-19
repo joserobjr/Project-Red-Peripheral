@@ -1,6 +1,7 @@
 package br.com.gamemods.computercraft.integration.projectred;
 
 import java.lang.reflect.Field;
+import java.util.logging.Logger;
 
 import codechicken.multipart.JItemMultiPart;
 import codechicken.multipart.MultiPartRegistry;
@@ -39,6 +40,8 @@ public class ProjectRedPeripheralMod implements IPartFactory {
 	@Instance("ProjRed|Transmission")
 	public static Object prTransmission;
 	
+	public static Logger log;
+	
 	@Override
 	public TMultiPart createPart(String name, boolean client) {
 		if(name.equals("prp_extensor")) return new ExtensorPart();
@@ -49,6 +52,7 @@ public class ProjectRedPeripheralMod implements IPartFactory {
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{
+		log = event.getModLog();
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		BlockProjectRedPeripheral.blockId = config.getBlock("bundled_io", BlockProjectRedPeripheral.blockId).getInt();
@@ -75,7 +79,7 @@ public class ProjectRedPeripheralMod implements IPartFactory {
 			fd.setAccessible(true);
 			item = (JItemMultiPart) (prTransmission != null? fd.get(o) : null); 
 		}
-		catch(Exception e){e.printStackTrace();}
+		catch(Exception e){ log.warning("Could not find itemPartWire from Project: Red Transmission, will use vanilla items in recipes. "+e);};
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(block),
 													"SWS",
