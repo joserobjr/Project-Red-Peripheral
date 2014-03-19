@@ -19,6 +19,12 @@
     <property name="bin" value="../../Minecraft/bin">
     </property>
 
+    <target name="copy-changes-from-minecraft-src">
+        <copy todir="${src}/br/com/gamemods/computercraft/integration/projectred" verbose="true">
+            <fileset dir="${minecraft-src}/br/com/gamemods/computercraft/integration/projectred"></fileset>
+        </copy>
+    </target>
+    
     <target name="prepare-debug" depends="copy-src">
         <delete verbose="true">
             <fileset dir="${mcp}/jars/mods" includes="**/ForgeMultipart*.jar" />

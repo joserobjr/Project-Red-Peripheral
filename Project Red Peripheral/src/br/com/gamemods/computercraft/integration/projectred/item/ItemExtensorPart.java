@@ -36,13 +36,23 @@ public class ItemExtensorPart extends JItemMultiPart {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
+		
 		icon = iconRegister.registerIcon("projectredperipheral:extensor");
+		Icon ic =icon;
+		ic.getIconHeight();
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getSpriteNumber()
+	{
+		return 0;
 	}
 
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World w, int x, int y, int z, int side, float f, float f2, float f3)
     {
-		if(1==1) return false; // Preventing uses for now...
+		//if(1==1) return false; // Preventing uses for now...
         if (super.onItemUse(stack, player, w, x, y, z, side, f, f2, f3))
         {
             w.playSoundEffect(x + 0.5, y + 0.5, z + 0.5, Block.soundGlassFootstep.getPlaceSound(), Block.soundGlassFootstep.getVolume() * 5.0F, Block.soundGlassFootstep.getPitch() * .9F);
