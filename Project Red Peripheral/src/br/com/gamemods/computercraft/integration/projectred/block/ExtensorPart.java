@@ -9,6 +9,7 @@ import br.com.gamemods.computercraft.integration.projectred.item.ItemExtensorPar
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 
 import mrtjp.projectred.api.IBundledEmitter;
 import mrtjp.projectred.api.IConnectable;
@@ -51,6 +52,33 @@ public class ExtensorPart extends TMultiPart implements TFacePart, IBundledEmitt
         }
     }
 	
+    public void notifyAllBlocksAround()
+    {
+
+    	int x = x();
+    	int y = y();
+    	int z = z();
+    	World world = world();
+    	int id = world.getBlockId(x, y, z);
+    	for(int ix = -1; ix <= 1; ix++)
+    		for(int iz = -1; iz <= 1; iz++)
+    			for(int iy = -1; iy <= 1; iy++)
+    				if(iz != 0 || ix != 0 || iy != 0)
+    					world.notifyBlockChange(x+ix, y+iy, z+iz, id);
+    }
+    
+    @Override
+    public void onAdded()
+    {
+    	notifyAllBlocksAround();
+    }
+    
+    @Override
+    public void onRemoved()
+    {
+    	notifyAllBlocksAround();
+    }
+    
     public void preparePlacement(int side, int meta)
     {
         this.side = (byte)(side^1);
