@@ -141,6 +141,7 @@ public class ExtensorRender {
         
         
         //MultiIconTransformation.setIconIndex(model, 1);
+        model.apply(Rotation.sideOrientation(part.side, 0).at(Vector3.center));
         model.render(new Translation(pos), new IconTransformation( part.getIcon()));
         //model.render(new Translation(pos), new TopIconTransformation(2, new UVScale(1)));
 		
